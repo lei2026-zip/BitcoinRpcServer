@@ -1,7 +1,7 @@
 package main
 
 import (
-	_ "BitcoinWeb/s/routers"
+	_ "BitcoinWeb/routers"
 	"github.com/astaxie/beego"
 )
 
