@@ -3,12 +3,43 @@
 <head>
     <meta charset="UTF-8">
     <title>Title</title>
+    <link rel="stylesheet" type="text/css" href="../static/css/ahead.css">
+    <link rel="stylesheet" type="text/css" href="../static/css/list.css">
     <script type="text/javascript" src="../static/js/jquery-3.1.1(1).js"></script>
+    <style>
+        *{
+            color: grey;
+        }
+        #body{
+            background: wheat;
+        }
+    </style>
 </head>
-<body>
+<body id="body">
+    <div id="ahead" >
+        <hr/>
+        <h1 >A组: Bitcoin Util</h1>
+        <hr/>
+    </div>
+    <div id="list" >
+        <div id="select">
+             <img src="">
+                              {{/* 聚焦        失焦         按键按起 */}}
+             <input type="text" onfocusin="" onfocusout="" onkeyup="query_commit()"/>
+        </div>
+        <ul >
+            {{range .List}}
+                 <li id="{{.}}">{{.}}</li>
+            {{end}}
+        </ul>
+    </div>
+    <div id="table">
 
+    </div>
      <script>
-           $()
+          function query_commit(){
+              alert(this.toString())
+          }
      </script>
 </body>
 </html>

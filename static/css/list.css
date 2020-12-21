@@ -1,0 +1,33 @@
+
+#list{
+    width: 220px;
+    height: 600px;
+    margin-left: 20px;
+    background: antiquewhite;
+    overflow-scrolling: auto;
+    position: absolute;
+}
+#list #select input{
+    height: 22px;
+    width: auto;
+    width: 218px;
+    border: 1px solid;
+    text-indent: 25px;
+    background: rgba(0,0,0,0);
+}
+#list #select img{
+    width: 25px;
+    height: 25px;
+    position:absolute;
+    float: left;
+    background: red;
+}
+
+#list ul li{
+    list-style: none;
+    cursor: pointer;
+}
+#list ul li:hover{
+    margin-left: 5px;
+    font-size: 20px;
+}
