@@ -7,7 +7,7 @@ import (
 )
 
 func main() {
-    fmt.Println("team-A's Project 2020年12月20日18:37:55")
+    fmt.Println("team-A's Project 2020年12月20日18:37:55-")
 
 	beego.SetStaticPath("/js","./static/js")
 	beego.SetStaticPath("/img","./static/img")

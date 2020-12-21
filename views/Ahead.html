@@ -3,9 +3,10 @@
 <head>
     <meta charset="UTF-8">
     <title>Title</title>
-    <link rel="stylesheet" type="text/css" href="../static/css/ahead.css">
-    <link rel="stylesheet" type="text/css" href="../static/css/list.css">
-    <script type="text/javascript" src="../static/js/jquery-3.1.1(1).js"></script>
+    <link rel="stylesheet" type="text/css" href="/css/ahead.css">
+    <link rel="stylesheet" type="text/css" href="/css/list.css">
+    <script type="text/javascript" src="/js/jquery-3.1.1(1).js"></script>
+    <script type="text/javascript" src="/js/animas.js"></script>
     <style>
         *{
             color: grey;
@@ -13,9 +14,59 @@
         #body{
             background: wheat;
         }
+        #list ul div{
+            display: none;
+            position: fixed;
+            background: seashell;
+            line-height: 20px;
+            width: 200px;
+            border-radius: 5px;
+            padding-left: 5px;
+            border: 1px dashed;
+        }
     </style>
 </head>
 <body id="body">
+<script>
+    var joy = document.getElementById("body1")
+    var emotion = new Array("(✿◠‿◠)","(͡° ͜ʖ ͡°)"," ≥Ö‿Ö≤ ","(ô‿ô)","≧◠◡◠≦ ","(>‿◠)","☜(ˆ▽ˆ)",
+        "（‐＾▽＾‐）","ᕙ( ＾‿ゝ＾ c)","≧◔◡◔≦ ","≧◉◡◉≦","(¬‿¬)","(─‿‿─)","٩(●̮̃•)۶","\﻿(•◡•)/")
+    joy.onclick = function client_smotiong(evt){
+        var e = evt || window.event
+        //var times = 10;
+        var x = e.clientX-30
+        var y = e.clientY +5
+        var op = 1;
+        var a = parseInt(Math.random()*255)
+        var b = parseInt(Math.random()*255)
+        var c = parseInt(Math.random()*255)
+        var fon = document.createElement("font")
+        var rand = parseInt(Math.random()*15)
+        rand = document.createTextNode(emotion[rand])
+        fon.appendChild(rand)
+        fon.style.position = "fixed"
+        fon.style.left = x+"px"
+        fon.style.top = y+"px";
+        fon.style.color = "rgba("+a+","+b+","+c+","+1+")"
+        fon.style.fontWeight = 900;
+        joy.appendChild(fon)
+        var i=0;
+        setInterval(function s(){
+            fon.style.top = y+1*i+"px"
+            i++;
+            if(i%10==0)
+            {
+                op = op-0.1
+                fon.style.color = "rgba("+a+","+b+","+c+","+op+")"
+            }
+            if(i==100)
+            {
+                joy.removeChild(fon)
+                clearInterval(this)
+            }
+        },15)
+    }
+</script>
     <div id="ahead" >
         <hr/>
         <h1 >A组: Bitcoin Util</h1>
@@ -27,9 +78,17 @@
                               {{/* 聚焦        失焦         按键按起 */}}
              <input type="text" onfocusin="" onfocusout="" onkeyup="query_commit()"/>
         </div>
-        <ul >
+        <ul type="number">
+            {{/*    2020年12月21日20:18:53   */}}
             {{range .List}}
-                 <li id="{{.}}">{{.}}</li>
+                {{range $key,$value:= .}}
+                        {{if eq $key 0}}
+                         <li id="{{$value}}" onmouseover="Describe(this)" onmouseleave="Undescribe(this)">{{$value}}</li>
+                         <div class="{{$value}}">
+                        {{else}}
+                           {{$value}}</div>
+                        {{end}}
+                {{end}}
             {{end}}
         </ul>
     </div>

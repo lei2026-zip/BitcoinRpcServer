@@ -1,18 +1,17 @@
 
 #list{
-    width: 220px;
+    width: 260px;
     height: 600px;
     margin-left: 20px;
     background: antiquewhite;
-    overflow-scrolling: auto;
     position: absolute;
 }
 #list #select input{
     height: 22px;
     width: auto;
-    width: 218px;
+    width: 258px;
     border: 1px solid;
-    text-indent: 25px;
+    text-indent: 30px;
     background: rgba(0,0,0,0);
 }
 #list #select img{
@@ -24,10 +23,30 @@
 }
 
 #list ul li{
-    list-style: none;
+    display: block;
     cursor: pointer;
 }
+#list ul{
+    height: 545px;
+    overflow-y:scroll;
+    overflow-x: hidden;
+    padding-bottom: 10px;
+}
+::-webkit-scrollbar{
+    background: beige ;
+    width: 16px;
+    solid-color:burlywood ;
+    z-index: 5;
+}
+::-webkit-scrollbar-button{
+    height: 10px;
+}
+::-webkit-scrollbar-thumb{
+    background: burlywood;
+
+}
+
 #list ul li:hover{
-    margin-left: 5px;
     font-size: 20px;
+    z-index: 10;
 }

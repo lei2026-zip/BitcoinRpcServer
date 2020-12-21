@@ -9,6 +9,5 @@ type LoginController struct {
 }
 
 func (c *LoginController) Post(){
-	//c.Data["List"] =
-	c.TplName = "Ahead.html"
+
 }
