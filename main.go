@@ -8,6 +8,7 @@ import (
 )
 
 func main() {
+	//这里用的绝对路径，记得修改
 	fmt.Println(string(ReadFile.CommandFileReader()))
     fmt.Println("team-A's Project 2020年12月20日18:37:55")
 
