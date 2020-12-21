@@ -1,0 +1,25 @@
+getbestblockhash
+getblock
+getblockchaininfo
+getblockcount
+getblockfilter, "blockhash" ( "filtertype" )
+getblockhash, height
+getblockheader, "blockhash" ( verbose )
+getblockstats, hash_or_height ( stats )
+getchaintips
+getchaintxstats, ( nblocks "blockhash" )
+getdifficulty
+getmempoolancestors, "txid" ( verbose )
+getmempooldescendants, "txid" ( verbose )
+getmempoolentry, "txid"
+getmempoolinfo
+getrawmempool, ( verbose )
+gettxout, "txid" n ( include_mempool )
+gettxoutproof, ["txid",...] ( "blockhash" )
+gettxoutsetinfo
+preciousblock, "blockhash"
+pruneblockchain, height
+savemempool
+scantxoutset, "action" ( [scanobjects,...] )
+verifychain, ( checklevel nblocks )
+verifytxoutproof, "proof"
