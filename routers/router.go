@@ -7,5 +7,5 @@ import (
 
 
 func init() {
-    beego.Router("/Bitcoin", &controllers.MainController{})
+    beego.Router("/Bitcoin", &controllers.RpcController{})
 }
