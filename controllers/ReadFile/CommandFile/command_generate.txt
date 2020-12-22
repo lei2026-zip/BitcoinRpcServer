@@ -1,2 +1,0 @@
-generatetoaddress, nblocks "address" ( maxtries )
-generatetodescriptor, num_blocks "descriptor" ( maxtries )
