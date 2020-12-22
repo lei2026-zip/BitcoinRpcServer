@@ -1,0 +1,12 @@
+analyzepsbt, "psbt"
+combinepsbt, ["psbt",...]
+combinerawtransaction, ["hexstring",...]
+converttopsbt, "hexstring" ( permitsigdata iswitness )
+createpsbt, [{"txid":"hex","vout":n,"sequence":n},...] [{"address":amount},{"data":"hex"},...] ( locktime replaceable )
+createrawtransaction, [{"txid":"hex","vout":n,"sequence":n},...] [{"address":amount},{"data":"hex"},...] ( locktime replaceable )
+decodepsbt, "psbt"
+decoderawtransaction, "hexstring" ( iswitness )
+decodescript, "hexstring"
+finalizepsbt, "psbt" ( extract )
+fundrawtransaction, "hexstring" ( options iswitness )
+getrawtransaction 

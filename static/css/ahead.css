@@ -1,0 +1,12 @@
+#ahead{
+    line-height: 20px;
+}
+
+#ahead h1{
+    margin-left: 20px;
+}
+/*//头部分割线 样式*/
+#ahead hr{
+    height: 0px;
+    border: darkgray dashed;
+}

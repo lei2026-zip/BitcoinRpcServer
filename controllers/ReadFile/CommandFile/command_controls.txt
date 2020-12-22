@@ -1,0 +1,6 @@
+getmemoryinfo, ( "mode" )
+getrpcinfo
+help, ( "command" )
+logging, ( ["include_category",...] ["exclude_category",...] )
+stop
+uptime
