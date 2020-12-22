@@ -1,9 +1,9 @@
 package main
 
 import (
+	_ "BitcoinWeb/routers"
 	"fmt"
 	"github.com/astaxie/beego"
-	_ "github.com/go-sql-driver/mysql"
 )
 
 func main() {
@@ -11,14 +11,13 @@ func main() {
 
 //	db_mysql.ConnectDB()
     //分包处理
-	beego.SetStaticPath("/js","./static/js/tool/")
-	beego.SetStaticPath("/jsc","./static/js/")
+	beego.SetStaticPath("/js","./static/js/tool")
+	beego.SetStaticPath("/jsc","./static/js")
 
 	beego.SetStaticPath("/img","./static/img")
 
 	beego.SetStaticPath("/CSS","./static/css")
 	beego.SetStaticPath("/css","./static/css/Entity")
-
 	beego.Run()
 }
 

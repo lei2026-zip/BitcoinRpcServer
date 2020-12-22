@@ -1,7 +1,7 @@
 package user
 
 import (
-	"BitcoinRpcServer/db_mysql"
+	"BitcoinWeb/db_mysql"
 	"crypto/md5"
 	"encoding/hex"
 )
