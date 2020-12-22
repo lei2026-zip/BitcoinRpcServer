@@ -14,21 +14,12 @@
         #body{
             background: wheat;
         }
-        #list ul div{
-            display: none;
-            position: fixed;
-            background: seashell;
-            line-height: 20px;
-            width: 200px;
-            border-radius: 5px;
-            padding-left: 5px;
-            border: 1px dashed;
-        }
+
     </style>
 </head>
 <body id="body">
 <script>
-    var joy = document.getElementById("body1")
+    var joy = document.getElementById("body")
     var emotion = new Array("(✿◠‿◠)","(͡° ͜ʖ ͡°)"," ≥Ö‿Ö≤ ","(ô‿ô)","≧◠◡◠≦ ","(>‿◠)","☜(ˆ▽ˆ)",
         "（‐＾▽＾‐）","ᕙ( ＾‿ゝ＾ c)","≧◔◡◔≦ ","≧◉◡◉≦","(¬‿¬)","(─‿‿─)","٩(●̮̃•)۶","\﻿(•◡•)/")
     joy.onclick = function client_smotiong(evt){
@@ -73,10 +64,13 @@
         <hr/>
     </div>
     <div id="list" >
-        <div id="select">
+        <div id="select" onmouseleave="clearspan()">
              <img src="">
                               {{/* 聚焦        失焦         按键按起 */}}
-             <input type="text" onfocusin="" onfocusout="" onkeyup="query_commit()"/>
+             <input type="text" onfocusin="" oninput="Query_List(this,6)" />
+             <div id="tip">
+{{/*      提示区           */}}
+             </div>
         </div>
         <ul type="number">
             {{/*    2020年12月21日20:18:53   */}}
@@ -92,13 +86,8 @@
             {{end}}
         </ul>
     </div>
+{{/*    */}}
     <div id="table">
-
     </div>
-     <script>
-          function query_commit(){
-              alert(this.toString())
-          }
-     </script>
 </body>
 </html>
