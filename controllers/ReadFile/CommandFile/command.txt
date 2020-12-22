@@ -1,0 +1,64 @@
+getbestblockhash
+getblock
+getblockchaininfo
+getblockcount
+getblockfilter, "blockhash" ( "filtertype" )
+getblockhash, height
+getblockheader, "blockhash" ( verbose )
+getblockstats, hash_or_height ( stats )
+getchaintips
+getchaintxstats, ( nblocks "blockhash" )
+getdifficulty
+getmempoolancestors, "txid" ( verbose )
+getmempooldescendants, "txid" ( verbose )
+getmempoolentry, "txid"
+getmempoolinfo
+getrawmempool, ( verbose )
+gettxout, "txid" n ( include_mempool )
+gettxoutproof, ["txid",...] ( "blockhash" )
+gettxoutsetinfo
+preciousblock, "blockhash"
+pruneblockchain, height
+savemempool
+scantxoutset, "action" ( [scanobjects,...] )
+verifychain, ( checklevel nblocks )
+verifytxoutproof, "proof"
+getmemoryinfo, ( "mode" )
+getrpcinfo
+help, ( "command" )
+logging, ( ["include_category",...] ["exclude_category",...] )
+stop
+uptime
+generatetoaddress, nblocks "address" ( maxtries )
+generatetodescriptor, num_blocks "descriptor" ( maxtries )
+getblocktemplate, ( "template_request" )
+getmininginfo,
+getnetworkhashps, ( nblocks height )
+prioritisetransaction, "txid" ( dummy ) fee_delta
+submitblock, "hexdata" ( "dummy" )
+submitheader, "hexdata"
+addnode, "node" "command"
+clearbanned
+disconnectnode, ( "address" nodeid )
+getaddednodeinfo, ( "node" )
+getconnectioncount
+getnettotals
+getnetworkinfo
+getnodeaddresses, ( count )
+getpeerinfo
+listbanned
+ping
+setban, "subnet" "command" ( bantime absolute )
+setnetworkactive, state
+analyzepsbt, "psbt"
+combinepsbt, ["psbt",...]
+combinerawtransaction, ["hexstring",...]
+converttopsbt, "hexstring" ( permitsigdata iswitness )
+createpsbt, [{"txid":"hex","vout":n,"sequence":n},...] [{"address":amount},{"data":"hex"},...] ( locktime replaceable )
+createrawtransaction, [{"txid":"hex","vout":n,"sequence":n},...] [{"address":amount},{"data":"hex"},...] ( locktime replaceable )
+decodepsbt, "psbt"
+decoderawtransaction, "hexstring" ( iswitness )
+decodescript, "hexstring"
+finalizepsbt, "psbt" ( extract )
+fundrawtransaction, "hexstring" ( options iswitness )
+getrawtransaction
