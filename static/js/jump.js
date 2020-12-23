@@ -8,11 +8,21 @@ function Write_text(obj) {
     $("div#commit input").attr("value",commit)
 }
 
-function Write_Maessge(str) {
-    var span = document.createElement("font")
-    var str  = document.createTextNode(strArr[i])
-    span.style.cursor = "pointer"
-    span.style.display = "block"
-    span.appendChild(str)
-    $("#tip").append(span)
+function Write_Maessge(master,str,ahead_color,font_color) {
+    var contant = document.createElement("div")
+    var ahead = document.createElement("span")
+    var data = document.createElement("font")
+    contant.setAttribute("id","massage")
+    ahead.innerText = master
+    ahead.style.color =ahead_color
+    contant.appendChild(ahead)
+    data.innerHTML = str
+    data.style.color = font_color
+    data.style.wordBreak = "break-all"
+    data.style.display = "block"
+    data.style.float = "right"
+    data.style.width = "900px"
+    contant.appendChild(data)
+    contant.style.float = "left"
+    $("#View").prepend(contant)
 }

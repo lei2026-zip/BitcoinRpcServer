@@ -61,6 +61,7 @@
     background: beige ;
     width: 16px;
     solid-color:burlywood ;
+    border: 1px solid #b8b8b8;
     z-index: 5;
 }
 ::-webkit-scrollbar-button{

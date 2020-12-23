@@ -19,7 +19,6 @@
         }
        #contant{
            height: 700px;
-           background: black;
        }
     </style>
 </head>
@@ -106,13 +105,19 @@
             </div>
             <div  id="params">
                 <font>参数:</font>
-                <input type="text" placeholder="params" value="" />
+                <input type="text" placeholder="params" value=""  />
                 <button id="help">Help</button>
             </div>
         </div>
     </div>
 </div>
 <script>
+    var keyEvent = (function () {
+        document.onkeydown = function (e) {
+            if (e.keyCode == 13) { // up rotate
+               RpcPost()
+        }}
+    })();
 
 </script>
 </body>

@@ -20,6 +20,10 @@ type Commit struct {
 	Params    string
 }
 
+/*
+ 2020年12月23日16:29:59
+ 处理 页面js 发起的post请求 并执行rpc请求 特定序列化返回结果
+*/
 func (c *RpcController) Post() {
 	commit := c.Ctx.Request.Body
 	commitbyte, err := ioutil.ReadAll(commit)
@@ -76,8 +80,13 @@ func (c *RpcController) Post() {
 		c.Ctx.ResponseWriter.Write(str)
 		return
 	}
-	//序列化响应数据
-	js["result"] = result
+    st,err:=	json.Marshal(result)
+	if err!=nil {
+		fmt.Println(err)
+		c.Ctx.ResponseWriter.Write(nil)
+	}
+	//序列化响应数据                                                       &nbsp; 转义 空格  &quot; 转义 "
+ 	js["result"] = Insert_Str(Insert_Str(Insert_Str(Insert_Str(string(st),",",",<br/>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;"),`"`,"&quot;"),"{","{<br/>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;"),"}","<br/>}")
 	js["error"] = 0
 	js["ErrorCode"] = nil
 	str,err := json.Marshal(js)
@@ -109,4 +118,11 @@ func ParseParams(params string)[]interface{}{
 	}
 	fmt.Println("arr:",inter)
 	return inter
+}
+/*
+ 插入字符串
+*/
+func Insert_Str(str string,sub string,new string) string{
+	st := strings.Replace(str,sub,new,-1)
+	return st
 }

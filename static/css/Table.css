@@ -1,21 +1,26 @@
 
 #table{
-    width: 810px;
+    width: 1011px;
     height: 600px;
-    background: red;
     display: inline-block;
     margin-top: 20px;
     display: inline-block;
     margin-left: 40px;
+    background: #F7DF95;
+    border: 1px #b8b8b8 solid;
 }
 
 #table #View{
-    width: 800px;
-    height: 500px;
-    background: yellow;
+    width: 1000px;
+    height: 485px;
     padding-left: 10px;
+    border: 1px #b8b8b8 solid;
+    overflow-y: scroll ;
 }
 #table #switch{
+    border: 1px #b8b8b8 solid;
+    width: 995px;
+    height: 102px;
     padding-top: 10px;
 }
 #switch div:first-child{
@@ -32,12 +37,15 @@
     font-weight: 900;
 
 }
+#table #switch  #commit{
+    margin-top: 1px;
+}
 /*命令框*/
 #table #switch  #commit input{
     height: 38px;
     display: inline-block;
     font-size: 20px;
-    width: 620px;
+    width: 720px;
     margin-left: 10px;
     text-indent: 10px;
     font-weight: 700;
@@ -45,7 +53,7 @@
 /*参数框*/
 #table #switch #params input{
     height: 38px;
-    width: 620px;
+    width: 720px;
     display: inline-block;
     font-size: 20px;
     margin-left: 10px;
@@ -58,14 +66,16 @@
     float: right;
     display: inline-block;
     margin-top: 1px;
-    margin-right: 10px;
+    margin-right: 20px;
     width: 80px;
+    background: #d5ae33;
 }
 #table #switch #help{
     float: right;
     height: 44px;
     display: inline-block;
     margin-top: 1px;
-    margin-right: 10px;
+    margin-right: 20px;
     width: 80px;
+    background: #d5ae33;
 }
