@@ -1,0 +1,71 @@
+
+#table{
+    width: 810px;
+    height: 600px;
+    background: red;
+    display: inline-block;
+    margin-top: 20px;
+    display: inline-block;
+    margin-left: 40px;
+}
+
+#table #View{
+    width: 800px;
+    height: 500px;
+    background: yellow;
+    padding-left: 10px;
+}
+#table #switch{
+    padding-top: 10px;
+}
+#switch div:first-child{
+    margin-top: -6px;
+}
+#switch div:nth-child(2){
+    margin-top: 3px;
+}
+
+#switch div font{
+    margin-left: 20px;
+    display: inline-block;
+    font-size: 20px;
+    font-weight: 900;
+
+}
+/*命令框*/
+#table #switch  #commit input{
+    height: 38px;
+    display: inline-block;
+    font-size: 20px;
+    width: 620px;
+    margin-left: 10px;
+    text-indent: 10px;
+    font-weight: 700;
+}
+/*参数框*/
+#table #switch #params input{
+    height: 38px;
+    width: 620px;
+    display: inline-block;
+    font-size: 20px;
+    margin-left: 10px;
+    text-indent: 10px;
+    font-weight: 700;
+}
+
+#table #switch #submit {
+    height: 44px;
+    float: right;
+    display: inline-block;
+    margin-top: 1px;
+    margin-right: 10px;
+    width: 80px;
+}
+#table #switch #help{
+    float: right;
+    height: 44px;
+    display: inline-block;
+    margin-top: 1px;
+    margin-right: 10px;
+    width: 80px;
+}

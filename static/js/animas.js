@@ -1,5 +1,5 @@
 
-import("./static/js/jquery-3.1.1(1)")
+import("jquery-3.1.1(1)")
 //list的显示描述
 function Describe(obj,evt){
     var e = evt||window.event

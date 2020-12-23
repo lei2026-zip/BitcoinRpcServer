@@ -18,6 +18,4 @@ func init() {
 	beego.Router("/", &controllers.MainController{})
 	////执行“register”打开登录页面
 	beego.Router("/register", &controllers.RegisterController{})
-	////执行“login”打开主页面
-	beego.Router("/Bitcoin", &controllers.RpcController{})
 }
