@@ -5,7 +5,8 @@
 * */
 function Write_text(obj) {
     var commit =  obj.getAttribute("id")
-    $("div#commit input").attr("value",commit)
+    $("#commit input").val(commit)
+    $("#params input").val("")
 }
 
 function Write_Maessge(master,str,ahead_color,font_color) {
@@ -25,4 +26,13 @@ function Write_Maessge(master,str,ahead_color,font_color) {
     contant.appendChild(data)
     contant.style.float = "left"
     $("#View").prepend(contant)
+}
+
+function Help() {
+   var commit =   $("div#commit input").attr("value",undefined).val()
+    if(commit==""){
+        return
+    }
+    Write_Maessge("$User=>","help " +`"`+commit+`"`,"red","yellow");  //打印的对话框中
+    post("http://127.0.0.1:8080/RPC","help",`"`+commit+`"`)
 }

@@ -40,12 +40,18 @@
 #table #switch  #commit{
     margin-top: 1px;
 }
+#table #switch #commit input::placeholder{
+    color: #b8b8b8;
+}
+#table #switch #params input::placeholder{
+    color: #b8b8b8;
+}
 /*命令框*/
 #table #switch  #commit input{
     height: 38px;
     display: inline-block;
     font-size: 20px;
-    width: 720px;
+    width: 740px;
     margin-left: 10px;
     text-indent: 10px;
     font-weight: 700;
@@ -53,7 +59,7 @@
 /*参数框*/
 #table #switch #params input{
     height: 38px;
-    width: 720px;
+    width: 740px;
     display: inline-block;
     font-size: 20px;
     margin-left: 10px;

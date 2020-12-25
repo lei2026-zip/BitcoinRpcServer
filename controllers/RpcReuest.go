@@ -3,6 +3,7 @@ package controllers
 import (
 	"BitcoinWeb/models/RPC"
 	"encoding/json"
+	"errors"
 	"fmt"
 	"github.com/astaxie/beego"
 	"io/ioutil"
@@ -63,9 +64,15 @@ func (c *RpcController) Post() {
 		c.Ctx.ResponseWriter.Write(str)
 		return
 	}
+	//pares params
+	params,err := ParseParams(jsonmap.Params)
+	if err!=nil{
+		fmt.Println("Error:" + err.Error())
+		c.Ctx.ResponseWriter.Write(nil)
+		return
+	}
 	//服务器发起rpc请求 执行客户端发来的命令
-
-	result, err := requst.Rpc_DoPost(jsonmap.Commit,ParseParams(jsonmap.Params))
+	result, err := requst.Rpc_DoPost(jsonmap.Commit,params)
 	if err != nil {
 		js["result"] = nil
 		js["error"] = 3
@@ -86,7 +93,7 @@ func (c *RpcController) Post() {
 		c.Ctx.ResponseWriter.Write(nil)
 	}
 	//序列化响应数据                                                       &nbsp; 转义 空格  &quot; 转义 "
- 	js["result"] = Insert_Str(Insert_Str(Insert_Str(Insert_Str(string(st),",",",<br/>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;"),`"`,"&quot;"),"{","{<br/>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;"),"}","<br/>}")
+ 	js["result"] = Insert_Str(Insert_Str(Insert_Str(Insert_Str(Insert_Str(Insert_Str(string(st),",",",<br/>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;"),`"`,"&quot;"),"{","{<br/>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;"),"}","<br/>}"),`\n`,`<br/>`),`\`,``)
 	js["error"] = 0
 	js["ErrorCode"] = nil
 	str,err := json.Marshal(js)
@@ -102,22 +109,30 @@ func (c *RpcController) Post() {
 * 解析参数
 * 转换为rpc的参数格式 [params...]
 */
-func ParseParams(params string)[]interface{}{
+func ParseParams(params string)([]interface{},error){
 	strarr :=  strings.Split(params," ")
 	var inter []interface{}
 	fmt.Println("len:",len(strarr))
 	if len(params)>0 {
 		for i := 0; i < len(strarr); i++ {
-			in, err := strconv.Atoi(strarr[i])
-			if err != nil {
-				inter = append(inter, strarr[i])
-				continue
+			if strings.Contains(strarr[i],`"`){
+				str:= strings.Split(strarr[i],`"`)
+				if(len(str)>=3){
+					inter = append(inter,str[1])
+				}else {
+					return nil,errors.New("参数字符格式错误")
+				}
+			}else {
+				in, err := strconv.Atoi(strarr[i])
+				if err != nil {
+					return nil,errors.New("参数整数格式错误")
+				}
+				inter = append(inter, in)
 			}
-			inter = append(inter, in)
 		}
 	}
 	fmt.Println("arr:",inter)
-	return inter
+	return inter,nil
 }
 /*
  插入字符串

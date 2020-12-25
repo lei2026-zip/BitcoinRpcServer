@@ -7,7 +7,7 @@ function RpcPost() {
     if(commit==""){
         return
     }
-    Write_Maessge("$User=>",commit+" " +params,"red","yellor");  //打印的对话框中
+    Write_Maessge("$User=>",commit+" " +params,"red","yellow");  //打印的对话框中
     post("http://127.0.0.1:8080/RPC",commit,params)
 }
 
