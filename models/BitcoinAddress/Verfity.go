@@ -1,7 +1,7 @@
 package BitcoinAddress
 
 import (
-	base58 "BitcoinWeb/models/Base58"
+	base58 "BitcoinWeb/BTCUtils/Base58"
 	"bytes"
 	"crypto/sha256"
 	"encoding/hex"
