@@ -25,7 +25,7 @@ type Rpc_Ahead struct {
 	Id int          `json:"id"`
 	Jsonrpc string  `json:"jsonrpc"`
 	Method string   `json:"method"`
-	Params []interface{}   `json:"params"`
+	Params []interface{}  `json:"params"`
 }
 /*
   创建一个新的 rpc请求 并初始化
@@ -54,22 +54,24 @@ func NewRpcRequst()(Rpc_Requst,error){
 /*
    发起rpc post请求 并返回结果
  */
-func (R Rpc_Requst)Rpc_DoPost(method string,params ...interface{})(interface{},error){
+func (R Rpc_Requst)Rpc_DoPost(method string,params []interface{})(interface{},error){
     client :=	http.Client{}
     R.Ahead.Method = method
-    if(params!=nil) {
-		R.Ahead.Params =params
+    if(len(params)!=0) {
+		R.Ahead.Params = params
+	}else{
+		R.Ahead.Params = make([]interface{},0)
 	}
-	fmt.Println(R)
+	fmt.Println("params:",R.Ahead.Params)
     /*
        序列化请求体
      */
     jsonbyte,err:=json.Marshal(R.Ahead)
+    fmt.Println("send:"+string(jsonbyte))
     if err!=nil{
     	fmt.Println(err)
     	return "",err
 	}
-	fmt.Println(jsonbyte)
     /*
       设置请求体
      */
@@ -84,26 +86,28 @@ func (R Rpc_Requst)Rpc_DoPost(method string,params ...interface{})(interface{},e
 		return "",err
 	}
 	/*
-	   检测网络请求状态
-	 */
-    statuscode  :=	response.StatusCode
-    if(statuscode!=200){
-    	fmt.Println("Post Error! StatusCode:",statuscode)
-    	return "",errors.New("请求失败")
-	}
-	/*
 	   读取响应体
-	 */
+	*/
 	resultbyte,err:= ioutil.ReadAll(response.Body)
 	if err!=nil{
 		fmt.Println("ReadAll Error::",err)
 		return "",err
 	}
-    /*
-       解析请求到的数据保存到map里并返回结果
-     */
+
+	/*
+	   解析请求到的数据保存到map里并返回结果
+	*/
 	result := make(map[string]interface{})
 	json.Unmarshal(resultbyte,&result)
+	fmt.Println(result)
+	/*
+	   检测网络请求状态
+	 */
+    statuscode  :=	response.StatusCode
+    if(statuscode!=200){
+    	fmt.Println("Post Error! Code:"+string(resultbyte))
+    	return "",errors.New("Rpc请求失败 error:"+string(resultbyte))
+	}
 
 	return result["result"],nil
 }
