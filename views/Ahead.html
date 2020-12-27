@@ -5,8 +5,11 @@
     <title>Title</title>
     <link rel="stylesheet" type="text/css" href="/CSS/ahead.css">
     <link rel="stylesheet" type="text/css" href="/CSS/list.css">
+    <link rel="stylesheet" type="text/css" href="/CSS/Table.css">
     <script type="text/javascript" src="/jsc/jquery-3.1.1(1).js"></script>
     <script type="text/javascript" src="/jsc/animas.js"></script>
+    <script type="text/javascript" src="/jsc/jump.js"></script>
+    <script type="text/javascript" src="/jsc/PRC_Rquest.js"></script>
     <style>
         *{
             color: grey;
@@ -14,7 +17,9 @@
         #body{
             background: wheat;
         }
-
+       #contant{
+           height: 700px;
+       }
     </style>
 </head>
 <body id="body">
@@ -63,6 +68,7 @@
         <h1 >A组: Bitcoin Util</h1>
         <hr/>
     </div>
+<div id="contant">
     <div id="list" >
         <div id="select" onmouseleave="clearspan()">
              <img src="">
@@ -77,7 +83,7 @@
             {{range .List}}
                 {{range $key,$value:= .}}
                         {{if eq $key 0}}
-                         <li id="{{$value}}" onmouseover="Describe(this)" onmouseleave="Undescribe(this)">{{$value}}</li>
+                         <li id="{{$value}}" onclick="Write_text(this)" onmouseover="Describe(this)" onmouseleave="Undescribe(this)">{{$value}}</li>
                          <div class="{{$value}}">
                         {{else}}
                            {{$value}}</div>
@@ -88,6 +94,31 @@
     </div>
 {{/*    */}}
     <div id="table">
+        <div id="View">
+
+        </div>
+        <div id="switch">
+            <div id="commit"  >
+                <font>命令:</font>
+                <input type="text" placeholder="commit" value=""/>
+                <button id="submit" onclick="RpcPost()">Submit</button>
+            </div>
+            <div  id="params">
+                <font>参数:</font>
+                <input type="text" placeholder="params" value=""  />
+                <button id="help" onclick="Help()">Help</button>
+            </div>
+        </div>
     </div>
+</div>
+<script>
+    var keyEvent = (function () {
+        document.onkeydown = function (e) {
+            if (e.keyCode == 13) { // up rotate
+               RpcPost()
+        }}
+    })();
+
+</script>
 </body>
 </html>
