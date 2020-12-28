@@ -111,26 +111,24 @@
 <body>
 <div class="login-page">
     <div class="form">
-        <form class="register-form">
-            <input placeholder="用户名">
-            <input type="password" placeholder="密码">
-            <input placeholder="邮箱">
-            <button>注册</button>
-            <p class="message">
-                已有账号? <a href="javascript:">立即登录</a>
+        <form action="/register" method="post" class="register-form">
+            <input name="newName" placeholder="用户名">
+            <input name="newPassword" type="password" placeholder="密码">
+            <input name="newE_mail" placeholder="邮箱">
+            <button type="submit">注册</button>
+            <p class="message">已有账号? <a href="javascript:">立即登录</a>
             </p>
         </form>
-        <form class="login-form">
-            <input placeholder="用户名">
-            <input type="password" placeholder="密码">
-            <button>登录</button>
-            <p class="message">
-                还没有账号？<a href="javascript:">立即注册</a>
+        <form action="/Bitcoin" method="post" class="login-form">
+            <input name="name" placeholder="用户名">
+            <input name="password" type="password" placeholder="密码">
+            <button type="submit">登录</button>
+            <p class="message">还没有账号？<a href="javascript:">立即注册</a>
             </p>
         </form>
     </div>
 </div>
-<script type="text/javascript" src="js/jquery.17.js"></script>
+<script type="text/javascript" src="../static/js/jquery.17.js"></script>
 <script>
     $('.message a').click(function() {
         $('form').animate({

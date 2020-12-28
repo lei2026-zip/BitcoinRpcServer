@@ -1,7 +1,9 @@
 package controllers
 
 import (
+	"BitcoinWeb/models/RPC"
 	"BitcoinWeb/models/user"
+	"fmt"
 	"github.com/astaxie/beego"
 )
 
@@ -13,15 +15,16 @@ func (r *LoginController) Post(){
 	var user user.User
 	err :=r.ParseForm(&user)
 	if err != nil {
-		r.Ctx.WriteString("对不起，解析数据错误")
+		fmt.Println("对不起，解析数据错误",err)
 		r.TplName ="error.html"
 		return
 	}
 	err = user.QueryUser()
 	if err !=nil  {
-		r.Ctx.WriteString("对不起，数据查询失败")
+		fmt.Println("对不起，数据查询失败",err)
 		r.TplName ="error.html"
 		return
 	}
+	r.Data["List"] = RPC.RPC_COMMIT
 	r.TplName ="Ahead.html"
 }
