@@ -14,14 +14,14 @@ type RegisterController struct {
 }
 
 func (c *MainController) Get() {
-	c.TplName = "register.html"
+	c.TplName = "login_and_register.html"
 }
 func (c *MainController) Post(){
-	c.TplName = "register.html"
+	c.TplName = "login_and_register.html"
 }
 
 func (r *RegisterController) Get() {
-	var user user.User
+	var user user.NewUser
 	err :=r.ParseForm(&user)
 	if err != nil {
 		r.Ctx.WriteString("对不起，解析数据错误")
@@ -32,11 +32,11 @@ func (r *RegisterController) Get() {
 		r.Ctx.WriteString("对不起，用户注册失败")
 		return
 	}
-	r.TplName ="login.html"
+	r.TplName ="login_and_register.html"
 }
 
 func (r *RegisterController) Post() {
-	var user user.User
+	var user user.NewUser
 	err :=r.ParseForm(&user)
 	if err != nil {
 		r.Ctx.WriteString("对不起，解析数据错误")
@@ -47,5 +47,5 @@ func (r *RegisterController) Post() {
 		r.Ctx.WriteString("对不起，用户注册失败")
 		return
 	}
-	r.TplName ="login.html"
+	r.TplName ="login_and_register.html"
 }
