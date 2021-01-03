@@ -44,6 +44,7 @@ function New_Bitcoin(requst_target){
         var send_data = {"requst_target": requst_target, "params": ""};
         rpc_quest("http://127.0.0.1:8080/Verify", send_data, function (a) {
             document.getElementById("Addr").innerHTML = a
+            document.getElementById("status").innerText = "状态 : OK!"
         })
 }
 
