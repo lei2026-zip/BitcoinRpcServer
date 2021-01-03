@@ -6,6 +6,7 @@
     <link rel="stylesheet" type="text/css" href="/CSS/ahead.css">
     <link rel="stylesheet" type="text/css" href="/CSS/list.css">
     <link rel="stylesheet" type="text/css" href="/CSS/Table.css">
+    <link rel="stylesheet" type="text/css" href="/CSS/verify.css">
     <script type="text/javascript" src="/jsc/jquery-3.1.1(1).js"></script>
     <script type="text/javascript" src="/jsc/animas.js"></script>
     <script type="text/javascript" src="/jsc/jump.js"></script>
@@ -23,46 +24,6 @@
     </style>
 </head>
 <body id="body">
-<script>
-    var joy = document.getElementById("body")
-    var emotion = new Array("(✿◠‿◠)","(͡° ͜ʖ ͡°)"," ≥Ö‿Ö≤ ","(ô‿ô)","≧◠◡◠≦ ","(>‿◠)","☜(ˆ▽ˆ)",
-        "（‐＾▽＾‐）","ᕙ( ＾‿ゝ＾ c)","≧◔◡◔≦ ","≧◉◡◉≦","(¬‿¬)","(─‿‿─)","٩(●̮̃•)۶","\﻿(•◡•)/")
-    joy.onclick = function client_smotiong(evt){
-        var e = evt || window.event
-        //var times = 10;
-        var x = e.clientX-30
-        var y = e.clientY +5
-        var op = 1;
-        var a = parseInt(Math.random()*255)
-        var b = parseInt(Math.random()*255)
-        var c = parseInt(Math.random()*255)
-        var fon = document.createElement("font")
-        var rand = parseInt(Math.random()*15)
-        rand = document.createTextNode(emotion[rand])
-        fon.appendChild(rand)
-        fon.style.position = "fixed"
-        fon.style.left = x+"px"
-        fon.style.top = y+"px";
-        fon.style.color = "rgba("+a+","+b+","+c+","+1+")"
-        fon.style.fontWeight = 900;
-        joy.appendChild(fon)
-        var i=0;
-        setInterval(function s(){
-            fon.style.top = y+1*i+"px"
-            i++;
-            if(i%10==0)
-            {
-                op = op-0.1
-                fon.style.color = "rgba("+a+","+b+","+c+","+op+")"
-            }
-            if(i==100)
-            {
-                joy.removeChild(fon)
-                clearInterval(this)
-            }
-        },15)
-    }
-</script>
     <div id="ahead" >
         <hr/>
         <h1 >A组: Bitcoin Util</h1>
@@ -92,10 +53,10 @@
             {{end}}
         </ul>
     </div>
-{{/*    */}}
+{{/*  控制台  */}}
     <div id="table">
         <div id="View">
-
+        {{/*     消息记录区     */}}
         </div>
         <div id="switch">
             <div id="commit"  >
@@ -106,8 +67,21 @@
             <div  id="params">
                 <font>参数:</font>
                 <input type="text" placeholder="params" value=""  />
-                <button id="help" onclick="Help()">Help</button>
+                <button id="clear" onclick="Clear()">Clear</button>
             </div>
+        </div>
+    </div>
+{{/*    验证框*/}}
+    <div id="Bitcoin_Addr">
+        <div id="NewBit">
+            <h2 align="center">生成新的比特币地址</h2>
+            <div id="Addr"></div>
+            <div id="status">状态 : ...</div><input id="on_NewBit" onclick="New_Bitcoin(`NewBitcoin`)" type="button" value="NEW">
+        </div>
+        <div id="verify">
+            <h2 align="center">比特币地址验证</h2>
+            <input id="BitcoinAddr" type="text" placeholder="Bitcoin Address"/>
+            <div id="res">结果 : 暂无...</div><input id="on_verif" onclick="Verify_Bitcoin(`verify`)" type="button" value="验证">
         </div>
     </div>
 </div>

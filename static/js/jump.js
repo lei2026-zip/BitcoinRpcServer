@@ -9,6 +9,7 @@ function Write_text(obj) {
     $("#params input").val("")
 }
 
+
 function Write_Maessge(master,str,ahead_color,font_color) {
     var contant = document.createElement("div")
     var ahead = document.createElement("span")
@@ -28,11 +29,17 @@ function Write_Maessge(master,str,ahead_color,font_color) {
     $("#View").prepend(contant)
 }
 
-function Help() {
-   var commit =   $("div#commit input").attr("value",undefined).val()
-    if(commit==""){
-        return
+function Clear() {
+   var view =  document.getElementById("View")
+    var child = view.children
+    for(i=0;i<child.length;i++){
+        view.removeChild(child[i])
+        i--
     }
-    Write_Maessge("$User=>","help " +`"`+commit+`"`,"red","yellow");  //打印的对话框中
-    post("http://127.0.0.1:8080/RPC","help",`"`+commit+`"`)
+   // var commit =   $("div#commit input").attr("value",undefined).val()
+   //  if(commit==""){
+   //      return
+   //  }
+   //  Write_Maessge("$User=>","help " +`"`+commit+`"`,"red","yellow");  //打印的对话框中
+   //  post("http://127.0.0.1:8080/RPC","help",`"`+commit+`"`)
 }

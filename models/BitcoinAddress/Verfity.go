@@ -3,11 +3,32 @@ package BitcoinAddress
 import (
 	base58 "BitcoinWeb/models/Base58"
 	"bytes"
+	"crypto/elliptic"
+	"crypto/rand"
 	"crypto/sha256"
 	"encoding/hex"
 	"fmt"
 	"golang.org/x/crypto/ripemd160"
 )
+
+func New_elliptic_publickey()[]byte{
+	curve := elliptic.P256()
+	pri, x, y, err := elliptic.GenerateKey(curve, rand.Reader)
+	if err != nil {
+		fmt.Println(err.Error())
+		return nil
+	}
+	//ecdsa.GenerateKey(curve,rand.Reader)
+	fmt.Println(pri)
+	fmt.Println(len(pri))
+
+	//拼接x和y，生成公钥
+	pubKey :=elliptic.Marshal(curve,x, y)
+	fmt.Println(hex.EncodeToString(pubKey))
+	fmt.Println(len(pubKey))
+	return pubKey
+}
+
 /**
    返回新比特币地址
  */

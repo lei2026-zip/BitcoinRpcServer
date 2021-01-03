@@ -14,6 +14,7 @@ func init() {
     //获取页面发起的rpc post请求
 	beego.Router("/RPC", &controllers.RpcController{})
 	//
+	beego.Router("/Verify",&controllers.VerifyController{})
 	////先执行“/”打开注册页面
 	beego.Router("/", &controllers.MainController{})
 	////执行“register”打开登录页面
