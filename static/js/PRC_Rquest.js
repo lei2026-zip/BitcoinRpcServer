@@ -27,7 +27,6 @@ function post(request_url,commit,params) {
                     if ((result["error"] != 0)) {
                         alert(result["ErrorCode"])
                     } else {
-
                         Write_Maessge("$Server=>", JSON.stringify(result["result"]), "blue", "gray")
                     }
                 }else{
@@ -52,7 +51,7 @@ function Verify_Bitcoin(requst_target) {
     var addr = document.getElementById("BitcoinAddr").value
     if(addr.length<20){
         document.getElementById("BitcoinAddr").value = ""
-        document.getElementById("res").iinnerHTML = "结果:长度应为20字节"
+        document.getElementById("res").innerHTML = "结果:长度应为20字节"
     }else {
         var send_data = {"requst_target": requst_target, "params": addr};
         rpc_quest("http://127.0.0.1:8080/Verify", send_data, function (a) {

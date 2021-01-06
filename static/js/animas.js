@@ -47,6 +47,12 @@ function Query_String(str,obj,maxlen) {
         var str  = document.createTextNode(strArr[i])
         span.style.cursor = "pointer"
         span.style.display = "block"
+        span.onclick = function () {
+            var commit =  this.className
+            $("#commit input").val(commit)
+            $("#params input").val("")
+        }
+        span.setAttribute("class",strArr[i])
         span.appendChild(str)
         $("#tip").append(span)
     }
