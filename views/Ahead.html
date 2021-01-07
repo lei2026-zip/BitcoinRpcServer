@@ -1,0 +1,98 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <link rel="stylesheet" type="text/css" href="/CSS/ahead.css">
+    <link rel="stylesheet" type="text/css" href="/CSS/list.css">
+    <link rel="stylesheet" type="text/css" href="/CSS/Table.css">
+    <link rel="stylesheet" type="text/css" href="/CSS/verify.css">
+    <script type="text/javascript" src="/jsc/jquery-3.1.1(1).js"></script>
+    <script type="text/javascript" src="/jsc/animas.js"></script>
+    <script type="text/javascript" src="/jsc/jump.js"></script>
+    <script type="text/javascript" src="/jsc/PRC_Rquest.js"></script>
+    <style>
+        *{
+            color: grey;
+        }
+        #body{
+            background: wheat;
+        }
+       #contant{
+           height: 700px;
+       }
+    </style>
+</head>
+<body id="body">
+    <div id="ahead" >
+        <hr/>
+        <h1 >A组: Bitcoin Util</h1>
+        <hr/>
+    </div>
+<div id="contant">
+    <div id="list" >
+        <div id="select" onmouseleave="clearspan()">
+             <img src="/img/query.png">
+                              {{/* 聚焦        失焦         按键按起 */}}
+             <input type="text" onfocusin="" oninput="Query_List(this,6)" />
+             <div id="tip">
+{{/*      提示区           */}}
+             </div>
+        </div>
+        <ul type="number">
+            {{/*    2020年12月21日20:18:53   */}}
+            {{range .List}}
+                {{range $key,$value:= .}}
+                        {{if eq $key 0}}
+                         <li id="{{$value}}" onclick="Write_text(this)" onmouseover="Describe(this)" onmouseleave="Undescribe(this)">{{$value}}</li>
+                         <div class="{{$value}}">
+                         {{else}}
+                           {{$value}}</div>
+                        {{end}}
+                {{end}}
+            {{end}}
+        </ul>
+    </div>
+{{/*  控制台  */}}
+    <div id="table">
+        <div id="View">
+        {{/*     消息记录区     */}}
+        </div>
+        <div id="switch">
+            <div id="commit"  >
+                <font>命令:</font>
+                <input type="text" placeholder="commit" value=""/>
+                <button id="submit" onclick="RpcPost()">Submit</button>
+            </div>
+            <div  id="params">
+                <font>参数:</font>
+                <input type="text" placeholder="params" value=""  />
+                <button id="clear" onclick="Clear()">Clear</button>
+            </div>
+        </div>
+    </div>
+{{/*    验证框*/}}
+    <div id="Bitcoin_Addr">
+        <div id="NewBit">
+            <h2 align="center">生成新的比特币地址</h2>
+            <div id="Addr"></div>
+            <div id="status">状态 : ...</div><input id="on_NewBit" onclick="New_Bitcoin(`NewBitcoin`)" type="button" value="NEW">
+        </div>
+        <div id="verify">
+            <h2 align="center">比特币地址验证</h2>
+            <input id="BitcoinAddr" type="text" placeholder="Bitcoin Address"/>
+            <div id="res">结果 : 暂无...</div><input id="on_verif" onclick="Verify_Bitcoin(`verify`)" type="button" value="验证">
+        </div>
+    </div>
+</div>
+<script>
+    var keyEvent = (function () {
+        document.onkeydown = function (e) {
+            if (e.keyCode == 13) { // up rotate
+               RpcPost()
+        }}
+    })();
+
+</script>
+</body>
+</html>
