@@ -1,12 +1,12 @@
 package controllers
 
 import (
-	"BitcoinWeb/models/BitcoinAddress"
+	"BitcoinRpcServer/models/BitcoinAddress"
 	"encoding/json"
 	"fmt"
 	"github.com/astaxie/beego"
 	"io/ioutil"
-	_"BitcoinWeb/models/BitcoinAddress"
+	_"BitcoinRpcServer/models/BitcoinAddress"
 )
 
 type VerifyController struct {

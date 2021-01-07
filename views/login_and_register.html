@@ -5,7 +5,7 @@
     <meta charset="utf-8">
     <title>登录注册页面</title>
     <style>
-        .login-page {
+        .large-header login-page {
             width: 360px;
             padding: 8% 0 0;
             margin: auto;
@@ -94,7 +94,7 @@
             color: #EF3B3A;
         }
         body {
-            background: #76b852;
+            background-image: linear-gradient(12deg,#e65c00, #F9D423);
             /* fallback for old browsers */
             background: -webkit-linear-gradient(right, #e65c00, #F9D423);
             background: -moz-linear-gradient(right,#e65c00, #F9D423);
@@ -109,9 +109,10 @@
 </head>
 
 <body>
-<div class="login-page">
-    <h1 align="center">比特币工具系统登录</h1>
+<canvas id="demo-canvas" width="1536" height="706" style="position:absolute"></canvas>
+<div id="large-header" class="large-header login-page" style="height: 706px;">
     <div class="form">
+        <h3>欢迎来到Bitcoin Core数据查询平台</h3>
         <form action="/register" method="post" class="register-form">
             <input name="newName" placeholder="用户名">
             <input name="newPassword" type="password" placeholder="密码">
@@ -129,6 +130,7 @@
         </form>
     </div>
 </div>
+</body>
 <script type="text/javascript" src="../static/js/jquery.17.js"></script>
 <script>
     $('.message a').click(function() {
@@ -137,6 +139,10 @@
         }, "slow");
     });
 </script>
-</body>
-
+<script type="text/javascript" src="../static/js/tool/login.js"></script>
+<script type="text/javascript" src="../static/js/tool/cache.js"></script>
+<script src="../static/js/tool/TweenLite.min.js"></script>
+<script src="../static/js/tool/EasePack.min.js"></script>
+<script src="../static/js/tool/rAF.js"></script>
+<script src="../static/js/tool/demo-1.js"></script>
 </html>
