@@ -21,6 +21,88 @@
        #contant{
            height: 700px;
        }
+        /*评论样式*/
+        fieldset{
+            width: 80%;
+            padding: 20px;
+            border: 1px solid gray;
+            border-radius: 10px;
+            margin: 20px auto;
+        }
+        #username{
+            width: 80%;
+            height: 25px;
+            border: 1px solid gray;
+            border-radius: 10px;
+            padding: 0 10px;
+        }
+        #content{
+            width: 80%;
+            height: 60px;
+            border: 1px solid gray;
+            border-radius: 10px;
+            padding: 10px;
+            margin: 20px auto;
+        }
+        #myform input[type='submit']{
+            width: 80px;
+            height: 30px;
+            border-radius: 15px;
+            border: none;
+            background-color: #555555;
+            color: #FFFFFF;
+            cursor: pointer;
+        }
+
+        #div1{
+            width: 80%;
+            height: 30px;
+            background-color: #808080;
+            margin: 20px auto;
+            padding:20px;
+            line-height: 30px;
+
+        }
+        #div1 span{
+            float: left;
+        }
+
+        #div1 button{
+            float: right;
+            width: 80px;
+            height: 30px;
+            border-radius: 15px;
+            background-color: #555555;
+            color: #FFFFFF;
+            border: none;
+
+        }
+
+        #div2{
+            width: 80%;
+            border: 1px solid gray;
+            margin: 10px auto;
+            padding: 10px;
+        }
+        /*设置评论的div的样式*/
+        #div2 .objDiv{
+            padding: 5px;
+            overflow: hidden;
+            border-bottom: 1px dotted gray;
+        }
+        #div2 .objDiv:hover{
+            background-color: gainsboro;
+        }
+
+        #div2 .objDiv button{
+            float: right;
+            border-radius: 5px;
+            padding: 2px 5px;
+        }
+        #div2:hover{
+            box-shadow: 0px 0px 100px black;
+            /*transform: scale(1.1);*/
+        }
     </style>
 </head>
 <body id="body">
@@ -84,6 +166,25 @@
             <div id="res">结果 : 暂无...</div><input id="on_verif" onclick="Verify_Bitcoin(`verify`)" type="button" value="验证">
         </div>
     </div>
+    <hr/>
+    <!--表单-->
+    <fieldset>
+        <legend>发表评论</legend>
+        <form action="#" method="post" id="myform">
+            <input type="text" id="username" placeholder="请输入账号" required>
+            <br />
+            <textarea id="content" placeholder="请输入评论内容" required></textarea>
+            <br />
+            <input type="submit" value="提交" />
+        </form>
+    </fieldset>
+    <!--评论的头部-->
+    <div id="div1">
+        <span>评论</span>
+        <button id="btn1">清空信息</button>
+    </div>
+    <!--动态添加评论信息-->
+    <div id="div2"></div>
 </div>
 <script>
     var keyEvent = (function () {
@@ -92,7 +193,116 @@
                RpcPost()
         }}
     })();
+    //评论机制
+    //step1：获取dom对象
+    var input1 = $("#username");//输入框
+    var text1 = $("#content");//文本域
+    var myform = $("#myform")//表单
+    var div2 = $("#div2");//放评论的大的div
+    var clearBtn = $("#btn1")//清空按钮
 
+
+    var arrObj = [];//创建一个数组，存储每次评论的obj对象
+
+
+
+
+    //step2：给表单添加提交事件
+    myform.on('submit',function(evt){
+        //清除默认事件
+        var e = evt || window.event;
+        e.preventDefault();//去除默认事件
+        //发布评论
+        addComment();
+    });
+
+    //加载页面，先从localStorage中读取数据，显示页面
+    showLocalStorage();
+
+
+    //清空按钮
+    clearBtn.on('click',function(){
+        //清空localStorage中的数据
+        localStorage.clear();
+        //重新显示页面
+        window.location.reload();//重新加载页面，就是刷新操作
+    })
+
+
+    //获取发布的内容，创建节点对象，添加到div上
+    function addComment(){
+        //1.获取输入框中的文本数据
+        var obj = new Object();
+        obj.username = input1.val();
+        obj.content = text1.val();
+        var now = new Date();
+        obj.time = now.getMonth()+1+"月"+now.getDate()+"日 "+now.getHours()+":"+now.getMinutes()+":"+now.getSeconds();
+
+        //2.根据获取到的内容，创建节点对象
+        var objDiv = $("<div class='objDiv'></div>").html("<h2>"+obj.username+"</h2>");//创建一条评论的div
+        /*
+         * <div class='objDiv'></div>
+         */
+        //思路一：创建标签节点，创建文本节点，不停的appendChild()
+        //思路二：innerHTML，后面 自动识别标签
+        objDiv.append($("<p>"+obj.content+"</p>"))
+        objDiv.append($("<p>"+obj.time+"</p>"))
+        objDiv.append($("<button onclick='deleteItem(this)'>删除</button>"))
+        //3.动态的创建节点对象，添加到div2上
+        div2.prepend(objDiv);//将新发布评论的div，插入到div2的最前面
+        //4.输入框清空
+        //	input1.val("");
+        text1.val("");
+
+        //5.将obj保存到数组中，将数组转为json字符串，存入到localStorage中
+        arrObj.unshift(obj);//obj存入到数组中
+        //obj3 obj2 obj1
+        //obj3 obj1 --->json
+
+        var jsonStr = JSON.stringify(arrObj);//将数组转为json字符串
+        console.log(jsonStr);
+        localStorage.setItem('data',jsonStr);
+    }
+
+    //从本地localStorage中读取json数据，解析后，获取数据，动态的创建div
+    function showLocalStorage(){
+        var jsonStr = localStorage.getItem('data');
+        console.log(jsonStr);
+        if(jsonStr){//jsonStr != null
+            //解析从localStorage中读取的json字符串，解析后是个数组
+            arrObj = JSON.parse(jsonStr);
+            console.log(arrObj.length);
+            //遍历数组：获取每个obj
+            for(var i=0;i<arrObj.length;i++){
+                //动态的创建每一个评论
+                var objDiv = $("<div class='objDiv'></div>").html("<h2>"+arrObj[i].username+"</h2>");//创建一条评论的div
+                objDiv.append("<p>"+arrObj[i].content+"</p>");
+                objDiv.append("<p>"+arrObj[i].time+"</p>")
+                objDiv.append("<button onclick='deleteItem(this)'>删除</button>")
+                //div2上添加objDiv
+                div2.append(objDiv);
+            }
+        }else{
+            console.log('localStorage中还没有数据。。')
+        }
+    }
+    //点击删除按钮，删除某一条评论
+    function deleteItem(obj){//obj = this, button
+        var thi = $($(this)).parent("div")
+        var ind;
+        $("#div2 div").each(function(index,element){
+            if(element==thi)
+            {
+                ind = index;
+            }
+        })
+        $("#div2 div").eq(ind).remove()
+        arrObj.splice(ind,1)
+        var jsonStr = JSON.stringify(arrObj);
+        localStorage.setItem('data',jsonStr);
+        //重新加载页面
+        window.location.reload();//重新加载页面，就是刷新操作
+    }
 </script>
 </body>
 </html>

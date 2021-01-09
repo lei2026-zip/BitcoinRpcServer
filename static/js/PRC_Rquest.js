@@ -27,8 +27,12 @@ function post(request_url,commit,params) {
                     if ((result["error"] != 0)) {
                         alert(result["ErrorCode"])
                     } else {
+<<<<<<< HEAD
 
                         Write_Maessge("$Server=>", JSON.stringify(result["result"]), "blue", "yellow")
+=======
+                        Write_Maessge("$Server=>", JSON.stringify(result["result"]), "blue", "gray")
+>>>>>>> remotes/origin/master
                     }
                 }else{
                     alert("服务器 json 解析错误")

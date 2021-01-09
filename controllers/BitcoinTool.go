@@ -1,7 +1,7 @@
 package controllers
 
 import (
-	"BitcoinWeb/models/RPC"
+	"BitcoinRpcServer/models/RPC"
 	"github.com/astaxie/beego"
 )
 

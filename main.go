@@ -2,8 +2,8 @@ package main
 
 
 import (
-	"BitcoinWeb/BTCUtils/db_mysql"
-	_ "BitcoinWeb/routers"
+	"BitcoinRpcServer/BTCUtils/db_mysql"
+	_ "BitcoinRpcServer/routers"
 	"github.com/astaxie/beego"
 )
 

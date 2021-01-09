@@ -1,7 +1,7 @@
 package controllers
 
 import (
-	"BitcoinWeb/models/user"
+	"BitcoinRpcServer/models/user"
 	"github.com/astaxie/beego"
 )
 type MainController struct {
