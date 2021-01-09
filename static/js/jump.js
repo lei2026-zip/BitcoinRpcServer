@@ -10,6 +10,8 @@ function Write_text(obj) {
 }
 
 
+
+
 function Write_Maessge(master,str,ahead_color,font_color) {
     var contant = document.createElement("div")
     var ahead = document.createElement("span")

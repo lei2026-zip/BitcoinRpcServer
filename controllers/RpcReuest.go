@@ -93,7 +93,7 @@ func (c *RpcController) Post() {
 		c.Ctx.ResponseWriter.Write(nil)
 	}
 	//序列化响应数据                                                       &nbsp; 转义 空格  &quot; 转义 "
- 	js["result"] = Insert_Str(Insert_Str(Insert_Str(Insert_Str(Insert_Str(Insert_Str(string(st),",",",<br/>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;"),`"`,"&quot;"),"{","{<br/>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;"),"}","<br/>}"),`\n`,`<br/>`),`\`,``)
+ 	js["result"] = Insert_Str(Insert_Str(Insert_Str(Insert_Str(Insert_Str(Insert_Str(string(st),",",",<br/>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;"),`"`,""),"{","{<br/>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;"),"}","<br/>}"),`\n`,`<br/>`),`\`,``)
 	js["error"] = 0
 	js["ErrorCode"] = nil
 	str,err := json.Marshal(js)
