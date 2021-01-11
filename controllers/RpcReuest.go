@@ -37,7 +37,6 @@ func (c *RpcController) Post() {
 		str,err := json.Marshal(js)
 		if err!=nil{
 			fmt.Println("响应体序列化失败!" + err.Error())
-			return
 		}
 		c.Ctx.ResponseWriter.Write(str)
 		return
@@ -58,8 +57,6 @@ func (c *RpcController) Post() {
 		str,err := json.Marshal(js)
 		if err!=nil{
 			fmt.Println("响应体序列化失败!" + err.Error())
-			c.Ctx.ResponseWriter.Write(nil)
-			return
 		}
 		c.Ctx.ResponseWriter.Write(str)
 		return
@@ -67,8 +64,15 @@ func (c *RpcController) Post() {
 	//pares params
 	params,err := ParseParams(jsonmap.Params)
 	if err!=nil{
-		fmt.Println("Error:" + err.Error())
-		c.Ctx.ResponseWriter.Write(nil)
+		js["result"] = nil
+		js["error"] = 2
+		js["ErrorCode"] = err.Error()
+		fmt.Println("参数解析失败:" + err.Error())
+		str,err := json.Marshal(js)
+		if err!=nil{
+			fmt.Println("响应体序列化失败!" + err.Error())
+		}
+		c.Ctx.ResponseWriter.Write(str)
 		return
 	}
 	//服务器发起rpc请求 执行客户端发来的命令
@@ -76,7 +80,7 @@ func (c *RpcController) Post() {
 	if err != nil {
 		js["result"] = nil
 		js["error"] = 3
-		js["ErrorCode"] =err.Error()
+		js["ErrorCode"] = Insert_Str(Insert_Str(err.Error(),`\"`,`"`),`\n`,"\n")
 		fmt.Println("rpc 请求错误!" + err.Error())
 		str,err := json.Marshal(js)
 		if err!=nil{
@@ -92,17 +96,24 @@ func (c *RpcController) Post() {
 		fmt.Println(err)
 		c.Ctx.ResponseWriter.Write(nil)
 	}
+	/**
+	   对数据添加html 换行符 空格 并嵌套修改了一些符号 便于页面展示
+	 */
+	str := string(st)
+	if str[0:1]=="\""{
+        str = str[1:len(str)-1]
+	}
 	//序列化响应数据                                                       &nbsp; 转义 空格  &quot; 转义 "
- 	js["result"] = Insert_Str(Insert_Str(Insert_Str(Insert_Str(Insert_Str(Insert_Str(string(st),",",",<br/>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;"),`"`,"&quot;"),"{","{<br/>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;"),"}","<br/>}"),`\n`,`<br/>`),`\`,``)
+ 	js["result"] =Insert_Str(Insert_Str(Insert_Str(Insert_Str(Insert_Str(Insert_Str(str,",",",<br/>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;"),`"`,"&quot;"),"{","{<br/>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;"),"}","<br/>}"),`\n`,`<br/>`),`\`,``)
 	js["error"] = 0
 	js["ErrorCode"] = nil
-	str,err := json.Marshal(js)
+	strjson,err := json.Marshal(js)
     if err!=nil{
 		fmt.Println("响应体序列化失败!" + err.Error())
 		c.Ctx.ResponseWriter.Write(nil)
 		return
 	}
-	c.Ctx.ResponseWriter.Write(str)
+	c.Ctx.ResponseWriter.Write(strjson)
 }
 
 /*

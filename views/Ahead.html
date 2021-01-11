@@ -23,7 +23,29 @@
        }
     </style>
 </head>
-<body id="body">
+<body id="body" style="height: 900px;">
+<script type="text/javascript">
+    var joy = $("#body")
+    joy.mousemove(function client_smotiong(evt){
+        var e = evt || window.event
+        //var times = 10;
+        var x = e.clientX+10 , y = e.clientY,op = 1,a = 255,b = 145,c = 68,size=10,redus = size/2;
+        var rand = parseInt(Math.random()*15)
+        var fon = $("<span></span>").css({"position":"fixed","background":"rgba("+a+","+b+","+c+",1)","width":size,"height":size,"border-radius":redus,"left": x+"px","top":y+"px","left": x+"px","top":y+"px"})
+        joy.append(fon);
+        var i=1;
+        setInterval(function s(){
+            fon.css({"opacity":i,"width":size,"height":size,"border-radius":redus})
+            i-=0.2
+            size -=2
+            redus = size/2
+            if(i==0){
+                joy.remove(fon)
+                clearInterval(this)
+            }
+        },30)
+    })
+</script>
     <div id="ahead" >
         <hr/>
         <h1 >A组: Bitcoin Util</h1>

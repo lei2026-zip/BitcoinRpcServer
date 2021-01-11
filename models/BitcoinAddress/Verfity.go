@@ -69,12 +69,12 @@ func NewBitcoinAddress(version byte, PublicKey []byte)(string){
 }
 
 func CheckAddress(Address string)(bool){
-	if Address == "" {
-		return false
-	}
+
 	//第一步，base58解码
 	addBytes := base58.Decode(Address)
-
+	if len(addBytes) <=4 {
+		return false
+	}
 	//第二步，截取后4位，得到校验位
 	check := addBytes[len(addBytes)-4 : len(addBytes)]
 
