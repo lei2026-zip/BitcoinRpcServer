@@ -1,7 +1,7 @@
 package controllers
 
 import (
-	"BitcoinWeb/models/RPC"
+	"BitcoinRpcServer/models/RPC"
 	"encoding/json"
 	"errors"
 	"fmt"
@@ -104,7 +104,11 @@ func (c *RpcController) Post() {
         str = str[1:len(str)-1]
 	}
 	//序列化响应数据                                                       &nbsp; 转义 空格  &quot; 转义 "
+<<<<<<< HEAD
  	js["result"] =Insert_Str(Insert_Str(Insert_Str(Insert_Str(Insert_Str(Insert_Str(str,",",",<br/>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;"),`"`,"&quot;"),"{","{<br/>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;"),"}","<br/>}"),`\n`,`<br/>`),`\`,``)
+=======
+ 	js["result"] = Insert_Str(Insert_Str(Insert_Str(Insert_Str(Insert_Str(Insert_Str(string(st),",",",<br/>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;"),`"`,""),"{","{<br/>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;"),"}","<br/>}"),`\n`,`<br/>`),`\`,``)
+>>>>>>> b372e32aa398cc9b320caf4ec6e72fd9ae67cd64
 	js["error"] = 0
 	js["ErrorCode"] = nil
 	strjson,err := json.Marshal(js)

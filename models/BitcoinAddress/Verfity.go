@@ -1,7 +1,7 @@
 package BitcoinAddress
 
 import (
-	base58 "BitcoinWeb/BTCUtils/Base58"
+	base58 "BitcoinRpcServer/BTCUtils/Base58"
 	"bytes"
 	"crypto/elliptic"
 	"crypto/rand"

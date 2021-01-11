@@ -1,8 +1,8 @@
 package controllers
 
 import (
-	"BitcoinWeb/models/RPC"
-	"BitcoinWeb/models/user"
+	"BitcoinRpcServer/models/RPC"
+	"BitcoinRpcServer/models/user"
 	"fmt"
 	"github.com/astaxie/beego"
 )

@@ -7,7 +7,11 @@ function RpcPost() {
     if(commit==""){
         return
     }
+<<<<<<< HEAD
     Write_Maessge("$User=>",commit+" " +params,"red","greenyellow");  //打印的对话框中
+=======
+    Write_Maessge("$User=>",commit+" " +params,"red","green");  //打印的对话框中
+>>>>>>> b372e32aa398cc9b320caf4ec6e72fd9ae67cd64
     post("http://127.0.0.1:8080/RPC",commit,params)
 }
 
@@ -27,7 +31,16 @@ function post(request_url,commit,params) {
                     if ((result["error"] != 0)) {
                         alert(result["ErrorCode"])
                     } else {
+<<<<<<< HEAD
                         Write_Maessge("$Server=>", JSON.stringify(result["result"]), "blue", "yellow")
+=======
+<<<<<<< HEAD
+
+                        Write_Maessge("$Server=>", JSON.stringify(result["result"]), "blue", "yellow")
+=======
+                        Write_Maessge("$Server=>", JSON.stringify(result["result"]), "blue", "gray")
+>>>>>>> remotes/origin/master
+>>>>>>> b372e32aa398cc9b320caf4ec6e72fd9ae67cd64
                     }
                 }else{
                     alert("服务器 json 解析错误")
